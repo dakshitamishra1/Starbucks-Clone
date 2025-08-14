@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Store - Starbucks</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #006241;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 30px auto;
+      display: flex;
+      gap: 10px;
+      padding: 0 20px;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 50px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 50px;
+      background-color: #006241;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background-color: #004d33;
+    }
+
+    .stores-container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .store-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .store-info h2 {
+      margin: 0 0 5px;
+      color: #006241;
+      font-size: 20px;
+    }
+
+    .store-info p {
+      margin: 2px 0;
+      color: #555;
+      font-size: 16px;
+    }
+
+    .store-card a {
+      padding: 10px 20px;
+      background-color: #006241;
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .store-card a:hover {
+      background-color: #004d33;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+      color: #006241;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Find a Starbucks Store</h1>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Enter city, zip code, or address">
+    <button onclick="searchStore()">Search</button>
+  </div>
+
+  <div class="stores-container" id="storesContainer">
+    <!-- Store cards will appear here -->
+  </div>
+
+  <a class="back-link" href="index.html">Back to Home</a>
+
+  <script>
+    // Sample store data (static for now)
+    const stores = [
+      { name: "Starbucks Downtown", address: "123 Main St, Cityville", hours: "6:00 AM - 9:00 PM", map: "https://maps.google.com" },
+      { name: "Starbucks Central Mall", address: "456 Center Rd, Townsville", hours: "7:00 AM - 10:00 PM", map: "https://maps.google.com" },
+      { name: "Starbucks Uptown", address: "789 Uptown Ave, Cityville", hours: "6:30 AM - 9:30 PM", map: "https://maps.google.com" }
+    ];
+
+    const container = document.getElementById('storesContainer');
+
+    function displayStores(list) {
+      container.innerHTML = '';
+      if(list.length === 0) {
+        container.innerHTML = '<p>No stores found. Try another location.</p>';
+        return;
+      }
+      list.forEach(store => {
+        const div = document.createElement('div');
+        div.className = 'store-card';
+        div.innerHTML = `
+          <div class="store-info">
+            <h2>${store.name}</h2>
+            <p>${store.address}</p>
+            <p>Hours: ${store.hours}</p>
+          </div>
+          <a href="${store.map}" target="_blank">View on Map</a>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Initial display
+    displayStores(stores);
+
+    function searchStore() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = stores.filter(store => 
+        store.name.toLowerCase().includes(query) ||
+        store.address.toLowerCase().includes(query)
+      );
+      displayStores(filtered);
+    }
+  </script>
+
+</body>
+</html>
