@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Starbucks</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .signin-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .signin-container h1 {
+      color: #006241;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .signin-container p {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .signin-container input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      font-size: 16px;
+    }
+
+    .signin-container button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 50px;
+      background-color: #006241;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .signin-container button:hover {
+      background-color: #004d33;
+    }
+
+    .signin-container .back-link {
+      display: block;
+      margin-top: 20px;
+      color: #006241;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .signin-container .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="signin-container">
+    <h1>Sign In</h1>
+    <p>Welcome back! Please sign in to your Starbucks account.</p>
+    <form id="signinForm">
+      <input type="email" placeholder="Email Address" name="email" required>
+      <input type="password" placeholder="Password" name="password" required>
+      <button type="submit" class=" btn btn-dark-outline" id="sign-in-btn">Sign In</button>
+    </form>
+    <a class="back-link" href="index.html">Back to Home</a>
+  </div>
+
+  <script>
+    // Simple redirect after form submission
+    const form = document.getElementById('signinForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent actual form submission
+      // Here you can validate user credentials
+      window.location.href = 'dashboard.html'; // Redirect to dashboard
+    });
+  </script>
+</body>
+</html>
